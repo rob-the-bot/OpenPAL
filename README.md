@@ -1,30 +1,28 @@
-# 仙三开源版
+# 仙剑开源版
 
-![Windows](https://img.shields.io/github/actions/workflow/status/dontpanic92/OpenPAL3/ci-windows.yml?branch=master&style=flat-square&label=Windows&logo=windows)
-![Linux](https://img.shields.io/github/actions/workflow/status/dontpanic92/OpenPAL3/ci-linux.yml?branch=master&style=flat-square&label=Linux&logo=linux)
-![macOS](https://img.shields.io/github/actions/workflow/status/dontpanic92/OpenPAL3/ci-macos.yml?branch=master&style=flat-square&label=macOS&logo=apple)
-![Android](https://img.shields.io/github/actions/workflow/status/dontpanic92/OpenPAL3/ci-android.yml?branch=master&style=flat-square&label=Android&logo=android)
-![PSVita](https://img.shields.io/github/actions/workflow/status/dontpanic92/OpenPAL3/ci-psvita.yml?branch=master&style=flat-square&label=PlayStation%20Vita&logo=playstation)
+![Windows](https://img.shields.io/github/actions/workflow/status/rob-the-bot/OpenPAL/ci-windows.yml?branch=master&style=flat-square&label=Windows&logo=windows)
+![Linux](https://img.shields.io/github/actions/workflow/status/rob-the-bot/OpenPAL/ci-linux.yml?branch=master&style=flat-square&label=Linux&logo=linux)
+![macOS](https://img.shields.io/github/actions/workflow/status/rob-the-bot/OpenPAL/ci-macos.yml?branch=master&style=flat-square&label=macOS&logo=apple)
+![Android](https://img.shields.io/github/actions/workflow/status/rob-the-bot/OpenPAL/ci-android.yml?branch=master&style=flat-square&label=Android&logo=android)
+![PSVita](https://img.shields.io/github/actions/workflow/status/rob-the-bot/OpenPAL/ci-psvita.yml?branch=master&style=flat-square&label=PlayStation%20Vita&logo=playstation)
 
 
 > 云对雨，雪对风，仙剑对妖弓。
 
-《仙剑奇侠传三》开源实现。仙三开源版仍处于早期开发阶段，存在很多未实现的功能及 Bug，暂无完善的游戏体验。
+《仙剑奇侠传三》和《仙剑奇侠传四》开源实现。
+仙剑三剧情开发已完成。
+仙剑四开源版仍处于早期开发阶段，存在很多未实现的功能及 Bug，暂无完善的游戏体验。
 
 ## 📢 声明
 
-- 仙三开源版不附带任何《仙剑奇侠传三》的游戏数据，因此您必须拥有《仙剑奇侠传三》的正版拷贝才可以正常运行仙三开源版。
-- 仙三开源版并非软星公司或大宇集团的官方作品。
+- 开源版不附带任何游戏数据，因此您必须拥有《仙剑奇侠传三》的[正版拷贝](https://store.steampowered.com/app/1536070)或者《仙剑奇侠传三》的[正版拷贝](https://store.steampowered.com/app/1536070)才可以正常运行。
+- 仙剑开源版并非软星公司或大宇集团的官方作品。
 
 ## 🏡 社区
 
 欢迎加入 QQ 群 636662894
 
-## 📌 下载
-
-v0.3 版本请前往 Releases 页面下载，[Azure Pipelines](https://dontpanic92.visualstudio.com/OpenPAL3/_build?definitionId=5&_a=summary&repositoryFilter=5&branchFilter=9) 上可以获得最新开发版本。
-
-### 运行
+## 运行
 
 **首次运行前请手动修改 `openpal3.toml`，将《仙剑奇侠传三》游戏目录填入：**
 **（请注意反斜杠需要重复两次）**
@@ -46,44 +44,59 @@ asset_path = "E:\\CubeLibrary\\apps\\1000039"
 - 方向键：跑
 - 1/2/3/4：存档至第1、2、3、4号存档位
 
-## 🛠 本地构建
+## Building
 
-目前 OpenPAL3 支持 Windows、Linux、 macOS 和 Android 作为目标平台。
+目前OpenPAL支持 Windows, Linux, PS Vita, macOS and Android作为目标平台。
+See the build files under [workflows](.github/workflows).
 
-### 工具链与依赖库
+### Toolchain and dependencies
 
-在构建 OpenPAL3 前，请确认已安装以下工具链与依赖库：
-
-- [Rust](https://www.rust-lang.org/) nightly toolchain
-  - 理论上 MSVC ABI 工具链与 GNU ABI 工具链均可编译
+- [Rust](https://www.rust-lang.org/) **nightly** toolchain
 - [OpenAL](https://www.openal.org)
-- [最新的 Vulkan SDK](https://www.lunarg.com/vulkan-sdk/)
+- [Latest Vulkan SDK](https://www.lunarg.com/vulkan-sdk/)
+- LLVM + clang
+  - [on Windows](https://releases.llvm.org/download.html)
+  - on Linux please install `libclang-dev` and `clang`
+- cmake
+  - [on Windows](https://cmake.org/download/)
+- vcpkg on Windows
+
 
 ### 构建步骤
 
-```
+
+```bash
 cd openpal3
 cargo build --release
 ```
 
 构建 Android 平台安装包需要先安装`cargo-apk`，并设置好 NDK 开发环境
-```
+
+```bash
 cd openpal3 && cargo apk build --release --lib
 ```
 
+For building instructions
+
 ### 常见问题
 
-macOS 平台下由于 nightly 工具链的一个[bug](https://github.com/rust-lang/rust/issues/91372) 构建时可用下面命令规避链接错误的问题：
+#### MacOS
 
-```
+由于 nightly 工具链的一个[bug](https://github.com/rust-lang/rust/issues/91372),构建时可用下面命令规避链接错误的问题：
+
+```bash
 MACOSX_DEPLOYMENT_TARGET=11.0 cargo build --release
 ```
 
-## 🙋‍♂️ 贡献
+#### PS Vita
+
+Requires VitaSDK, see [ci-psvita.yml](.github/workflows/ci-psvita.yml).
+
+## Contributing
 
 非常感谢一同参与 OpenPAL3 的开发！请参看 [CONTRIBUTING](CONTRIBUTING.md) 来了解参与项目的要求与步骤。
 
-## 📔 相关资料
+## Miscellaneous
 
 - [@zhangboyang/PAL3patch](https://github.com/zhangboyang/PAL3patch) 提供了简单有效的脱壳工具
 - [仙剑三高难度吧](https://tieba.baidu.com/f?kw=%E4%BB%99%E5%89%913%E9%AB%98%E9%9A%BE%E5%BA%A6) 有一些关于仙剑三数据文件的目录结构与内容的讨论
