@@ -43,6 +43,11 @@ Modify the hard-coded string in [openpal4/application.rs](yaobow/yaobow/src/open
 Alternatively one can repack the the content of `gamedata` folder of PAL4, use the [repacker](tools/repacker) tool provided.
 Note repacking defaults to resize the image assets, see comparison images below.
 Repacking might be desired in some platforms to reduce the total number of opened file descriptors (for example PS Vita), or just to save computing resources.
+Repacking can be done by (example on Windows)
+
+```powershell
+target\release\repacker.exe --pal4 "<parent_folder>\Chinese Paladin 4\gamedata" "C:\PAL4_test\pal4.ypk"
+```
 
 ![Original PAL4](images/pal4_orig.png)
 
