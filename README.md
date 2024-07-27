@@ -33,6 +33,9 @@ Modify `openpal3.toml` to include the correct game path
 # The folder where PAL3.exe is
 asset_path = "E:\\CubeLibrary\\apps\\1000039"
 ```
+
+之后运行 `openpal3.exe` 即可。如果运行时提示 OpenAL 出错，[请下载并安装 OpenAL](http://www.openal.org/downloads/oalinst.zip)。
+
 ### 仙剑四
 
 Modify the hard-coded string in [openpal4/application.rs](yaobow/yaobow/src/openpal4/application.rs).
@@ -44,9 +47,6 @@ Repacking might be desired in some platforms to reduce the total number of opene
 ![Original PAL4](images/pal4_orig.png)
 
 ![Repacked PAL4](images/pal4_ypk.png)
-
-
-之后运行 `openpal3.exe` 即可。如果运行时提示 OpenAL 出错，[请下载并安装 OpenAL](http://www.openal.org/downloads/oalinst.zip)。
 
 ### 操作
 
