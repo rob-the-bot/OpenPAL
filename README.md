@@ -24,14 +24,27 @@
 
 ## 运行
 
-**首次运行前请手动修改 `openpal3.toml`，将《仙剑奇侠传三》游戏目录填入：**
-**（请注意反斜杠需要重复两次）**
+### 仙剑三
+
+Modify `openpal3.toml` to include the correct game path
 
 ```
 # PAL3.exe 所在的目录
 # The folder where PAL3.exe is
 asset_path = "E:\\CubeLibrary\\apps\\1000039"
 ```
+### 仙剑四
+
+Modify the hard-coded string in [openpal4/application.rs](yaobow/yaobow/src/openpal4/application.rs).
+
+Alternatively one can repack the the content of `gamedata` folder of PAL4, use the [repacker](tools/repacker) tool provided.
+Note repacking defaults to resize the image assets, see comparison images below.
+Repacking might be desired in some platforms to reduce the total number of opened file descriptors (for example PS Vita), or just to save computing resources.
+
+![Original PAL4](images/pal4_orig.png)
+
+![Repacked PAL4](images/pal4_ypk.png)
+
 
 之后运行 `openpal3.exe` 即可。如果运行时提示 OpenAL 出错，[请下载并安装 OpenAL](http://www.openal.org/downloads/oalinst.zip)。
 
