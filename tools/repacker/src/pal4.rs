@@ -26,7 +26,7 @@ pub fn repack(config: Pal4RepackConfig) {
     repack_recursive(
         &config,
         &bar,
-        &PathBuf::from(&config.input_folder).join("gamedata"),
+        &PathBuf::from(&config.input_folder),
         &PathBuf::from(""),
         &mut writer,
     );
